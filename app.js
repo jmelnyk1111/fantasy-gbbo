@@ -53,6 +53,8 @@ app.get("/add-team", function(req, res) {
 });
 
 
-app.listen(3000, '127.0.0.1', function() {
-    console.log("GBBO app has started...")
-});
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port);
