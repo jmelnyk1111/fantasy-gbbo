@@ -53,8 +53,5 @@ app.get("/add-team", function(req, res) {
 });
 
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 80;
-}
+let port = process.env.PORT || 8080;
 app.listen(port);
