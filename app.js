@@ -17,12 +17,13 @@ let teamSchema = new mongoose.Schema({
 let Team = mongoose.model("Team", teamSchema);
 
 app.get("/", function(req, res) {
-    res.redirect("teams");
+    res.redirect("/teams");
     //res.send("you're here");
 });
 
 app.get("/teams", function(req, res) {
     // Get all teams from DB
+    res.send("whatup")
     Team.find({}, function(err, allTeams){
         if(err){
             console.log(err);
