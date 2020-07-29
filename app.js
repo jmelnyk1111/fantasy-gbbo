@@ -16,7 +16,7 @@ conn.on('connected', () => {
     console.log("Mongoose is connected!");
 });
 
-conn.once('open', function(){});
+//conn.once('open', function(){});
 
 let teamSchema = new mongoose.Schema({
     name: String,
@@ -32,7 +32,6 @@ app.get("/", function(req, res) {
 
 app.get("/teams", function(req, res) {
     // Get all teams from DB
-    res.send("whatup")
     Team.find({}, function(err, allTeams){
         if(err){
             console.log(err);
