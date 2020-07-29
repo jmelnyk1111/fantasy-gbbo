@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 const mongoose = require("mongoose");
-const uri = "mongodb+srv://jaredmelnyk:d36Vvf5MsF5cYnc@cluster0.qaqkq.mongodb.net/Cluster0"
+const uri = process.env.MONGODB_URL;
 mongoose.connect(uri, {
     useNewUrlParser: true
 });
