@@ -7,7 +7,16 @@ app.set("view engine", "ejs");
 
 const mongoose = require("mongoose");
 const uri = "mongodb+srv://jaredmelnyk:d36Vvf5MsF5cYnc@cluster0.qaqkq.mongodb.net/Cluster0"
-mongoose.connect(uri);
+mongoose.connect(uri, {
+    useNewUrlParser: true
+});
+
+let conn = mongoose.connection;
+conn.on('connected', () => {
+    console.log("Mongoose is connected!");
+});
+
+conn.once('open', function(){});
 
 let teamSchema = new mongoose.Schema({
     name: String,
