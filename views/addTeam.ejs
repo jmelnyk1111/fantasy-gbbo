@@ -1,13 +1,13 @@
 <%- include("partials/header") %>
 
-<div class=container>
-    <h1>Add your team to the league</h1>
+<div class="container justify-content-center text-align-center">
+    <h1 class="jumbotron">Add your team to the league</h1>
 
-    <div class=containter display=flex>
+    <div class="containter d-flex justify-content-center">
         <form action="/teams" method="POST">
             <input type="text" id="name" name="name" placeholder="Team Name">
-            <input type="text" id="slogan" name="slogan" placeholder="Team Slogan">
-            <input type="submit">
+            <br><input type="text" id="slogan" name="slogan" placeholder="Team Slogan">
+            <br><input type="submit" class="btn btn-primary">
         </form>
 
     </div>
