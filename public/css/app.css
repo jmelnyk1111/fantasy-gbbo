@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(219, 212, 245);
+}
+
+.jumbotron {
+    background-color: rgb(149, 224, 224);
+}
+
+.col-1 {
+    background-color: coral;
+    border-color: blue;
+    border-style: solid;
+    border-width: 2px;
+}
