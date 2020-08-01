@@ -1,0 +1,26 @@
+<%- include("partials/header") %>
+
+<div class="container">
+    <h1 class="jumbotron">Meet the Bakers!</h1>
+
+    <div class="container">
+        <h3>Who will take home the big prize?</h3>
+
+        <div class="row justify-content-center align-items-center">
+            <% bakerList.forEach(function(baker) { %>
+                <div class="col-2">
+                    <img class="img-fluid" src="<%= baker.img %>"">
+                    <p><%= baker.name%></p>
+                </div>
+            <% }); %>
+        </div>
+        
+        <a type="button" class="btn btn-primary" href="/teams">Back to Teams</a>
+
+    </div>
+    
+
+</div>
+
+
+<%- include("partials/footer") %>

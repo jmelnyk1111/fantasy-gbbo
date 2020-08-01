@@ -12,3 +12,11 @@ body {
     border-style: solid;
     border-width: 2px;
 }
+
+#teamForm {
+    width: 60%;
+}
+
+.btn {
+    margin: 5px auto;
+}

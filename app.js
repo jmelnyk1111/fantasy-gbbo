@@ -19,36 +19,29 @@ conn.on('connected', () => {
     console.log("Mongoose is connected!");
 });
 
+let bakerList = [
+    {name:"Brendan", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/brendan-large1.jpg"},
+    {name:"Cathryn", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/cathryn-large1.jpg"},
+    {name:"Danny", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/danny-large1.jpg"},
+    {name:"James", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/james-large1.jpg"},
+    {name:"John", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/john-large1.jpg"},
+    {name:"Sarah-Jane", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/sarah-large1.jpg"},
+    {name:"Ryan", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/ryan-large1.jpg"},
+    {name:"Peter", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/peter-large1.jpg"},
+    {name:"Natasha", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/natasha-large1.jpg"},
+    {name:"Manisha", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/manisha-large1.jpg"},
+    {name:"Victoria", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/victoria-large1.jpg"},
+    {name:"Stuart", img:"https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2013/08/stuart-large1.jpg"},
+];
 
 let teamSchema = new mongoose.Schema({
     name: String,
     slogan: String,
-    score: Object,
-});
+    epScores: Object,
+    bakers: Object
+}, {minimize:false});
 
 let Team = mongoose.model("Team", teamSchema);
-
-// let teamTurtles = new Team({
-//     name:"Meryl Streeper 2", 
-//     slogan:"Somebody come geet er! NOW",
-//     score:{
-//         "ep1":6,
-//         "ep2":12.5,
-//         "ep3":4,
-//         "ep4":6,
-//         "ep5":12.5,
-//         "ep6":4,
-//         "ep7":6,
-//         "ep8":12.5,
-//         "ep9":4,
-//         "ep10":6,
-//     }
-// });
-
-// teamTurtles.save(function (err, team) {
-//     if (err) return console.error(err);
-//     console.log(team.name + " saved to Teams collection");
-// });
 
 app.get("/", function(req, res) {
     res.redirect("/teams");
@@ -63,25 +56,18 @@ app.get("/teams", function(req, res) {
             res.render("teams", {teamList: allTeams});
         }
     });
-    
+});
+
+app.get("/bakers", function(req, res) {
+    res.render("bakers", {bakerList: bakerList});
 });
 
 app.post("/teams", function(req, res) {
     let newTeam = {
         name: req.body.name,
         slogan: req.body.slogan,
-        score:{
-            "ep1":0,
-            "ep2":0,
-            "ep3":0,
-            "ep4":0,
-            "ep5":0,
-            "ep6":0,
-            "ep7":0,
-            "ep8":0,
-            "ep9":0,
-            "ep10":0,
-        }
+        epScores:{},
+        bakers:{}
     };
 
     Team.create(newTeam, function(err, newlyCreated){

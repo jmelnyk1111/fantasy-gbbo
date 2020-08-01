@@ -10,12 +10,19 @@
             <% teamList.forEach(function(team) { %>
                 <div class="col-2">
                     <p><%= team.name%></p>
+                    <!-- <p><%= team.slogan%></p> -->
                 </div>
-                <% Object.keys(team.epScores).forEach(function(ep) { %>
+                <% Object.keys(team.score).forEach(function(ep) { %>
                     <div class="col-1 text-align-center">
-                        <p><%= team.epScores[ep]%></p>
+                        <p><%= team.score[ep]%></p>
                     </div>
                 <% }); %>
+                <!-- <div class=col-3>
+                    <%= team.score.ep2%>
+                </div>
+                <div class=col-3>
+                    <%= team.score.ep3%>
+                </div> -->
             <% }); %>
         </div>
         
