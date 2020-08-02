@@ -82,6 +82,8 @@ let bakerList = [
     },
 ];
 
+let remainingBakers = bakerList;
+
 let teamSchema = new mongoose.Schema({
     name: String,
     slogan: String,
@@ -108,6 +110,16 @@ app.get("/teams", function(req, res) {
 
 app.get("/bakers", function(req, res) {
     res.render("bakers", {bakerList: bakerList});
+});
+
+app.get("/rosters", function(req, res) {
+    Team.find({}, function(err, allTeams){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("rosters", {remainingBakers: remainingBakers, teamList: allTeams});
+        }
+    });
 });
 
 app.post("/teams", function(req, res) {

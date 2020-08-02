@@ -14,10 +14,6 @@ body {
     width: 60%;
 }
 
-.btn {
-    margin: 5px auto;
-}
-
 p {
     font-size: 2em;
 }
@@ -25,4 +21,23 @@ p {
 .tooltip-inner {
     font-size: 25px;
     color: rgb(194, 181, 66);
+}
+
+.navButton {
+    height: 100%;
+    border-radius: 0%;
+    border: none;
+}
+
+#navbar {
+    padding: 0px;
+    width: 100%;
+}
+
+.navbar-brand {
+    padding: 0px 15px;
+}
+
+#roster-col {
+    border: 2px solid cyan;
 }
