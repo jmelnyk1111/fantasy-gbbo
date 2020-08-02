@@ -6,10 +6,10 @@
     <div class="container">
         <h3>Who will take home the big prize?</h3>
 
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center text-center">
             <% bakerList.forEach(function(baker) { %>
-                <div class="col-2">
-                    <img class="img-fluid" src="<%= baker.img %>"">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <img class="img-fluid baker-tooltip" data-toggle="tooltip" data-placement="bottom" title="<%= baker.bio%>" src="<%= baker.img %>"">
                     <p><%= baker.name%></p>
                 </div>
             <% }); %>
