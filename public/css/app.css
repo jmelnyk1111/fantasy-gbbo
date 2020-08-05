@@ -14,19 +14,15 @@ body {
     width: 60%;
 }
 
-p {
-    font-size: 2em;
-}
-
-.tooltip-inner {
-    font-size: 25px;
-    color: rgb(194, 181, 66);
+.btn {
+    margin: 5px auto;
 }
 
 .navButton {
     height: 100%;
     border-radius: 0%;
     border: none;
+    margin: auto;
 }
 
 #navbar {
@@ -40,4 +36,12 @@ p {
 
 #roster-col {
     border: 2px solid cyan;
+}
+
+#baker {
+    padding: 10px;
+}
+
+#bio {
+    margin-bottom: 30px;
 }
