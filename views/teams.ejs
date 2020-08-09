@@ -6,18 +6,20 @@
     <div class="container">
         <h3>Here are the teams</h3>
 
-        <div class="row justify-content-center align-items-center">
-            <% teamList.forEach(function(team) { %>
+        <% teamList.forEach(function(team) { %>
+            <div class="row align-items-center">
                 <div class="col-2">
-                    <p><%= team.name%></p>
+                    <%= team.name%> 
                 </div>
-                <% Object.keys(team.epScores).forEach(function(ep) { %>
-                    <div class="col-1 text-align-center">
-                        <p><%= team.epScores[ep]%></p>
+                <% for (let key in team.epScores) { %>
+                    <% let value = team.epScores[key]; %>   
+                    <div id="scoreboard" class="col-1 text-align-center justify-content-center">
+                        <%- value.score %>
                     </div>
-                <% }); %>
-            <% }); %>
-        </div>
+                <% }; %>
+            </div>
+        <% }); %>
+        
         
         <!-- <a type="button" class="btn btn-primary" href="/add-team">Add my team</a> -->
         <br><a type="button" class="btn btn-secondary" href="/bakers">Meet the bakers</a>
