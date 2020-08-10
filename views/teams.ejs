@@ -4,8 +4,19 @@
     <h1 class="jumbotron">Welcome to your Fantasy GBBO League!</h1>
 
     <div class="container">
-        <h3>Here are the teams</h3>
+        <h3>Here are the scores</h3>
 
+
+        <div class="row">
+            <div class="col-2">
+                Episode
+            </div>
+            <% for (let ep = 1; ep <= 10; ep++) { %>
+                <div class="col-2 col-sm-1 text-center justify-content-center">
+                    <%= ep%> 
+                </div>
+            <% }; %>
+        </div>
         <% teamList.forEach(function(team) { %>
             <div class="row align-items-center">
                 <div class="col-2">
@@ -13,7 +24,7 @@
                 </div>
                 <% for (let key in team.epScores) { %>
                     <% let value = team.epScores[key]; %>   
-                    <div id="scoreboard" class="col-1 text-align-center justify-content-center">
+                    <div id="scoreboard" class="col-2 col-sm-1 text-align-center justify-content-center">
                         <%- value.score %>
                     </div>
                 <% }; %>

@@ -26,11 +26,12 @@
                     <div class="col-3 id="teamName"">
                         <p><%= team.name%></p>
                     </div>
-                    <!-- Object.keys(team.roster).forEach(function(ep) { -->
-                        <div class="col-3 text-center" id="roster-col">
-                            <p><%= team.roster%></p>
+                    <% for (let key in team.roster) { %>
+                        <% let value = team.roster[key]; %>   
+                        <div id="scoreboard" class="col-3 text-align-center justify-content-center">
+                            <%- value.name %>
                         </div>
-                    <!-- }); -->
+                    <% }; %>
                 </div>
             <% }); %>
         </div>
