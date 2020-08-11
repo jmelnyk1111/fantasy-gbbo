@@ -35,8 +35,37 @@ let BakerSchema = new mongoose.Schema({
 
 let Baker = mongoose.model("Baker", BakerSchema);
 
+let scoreCategories = [
+    {
+        id: 1,
+        name: "Star Baker",
+    },
+    {
+        id: 2,
+        name: "Technical - 1st place"
+    },
+    {
+        id: 3,
+        name: "Technical - 2nd place"
+    },
+    {
+        id: 4,
+        name: "Technical - 3rd place"
+    }
+];
+
 app.get("/", function(req, res) {
     res.redirect("/teams");
+});
+
+app.get("/input-scores", function(req, res) {
+    Baker.find({}, function(err, allBakers){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("inputScores", {allBakers: allBakers, scoreCategories: scoreCategories});
+        }
+    });
 });
 
 app.get("/teams", function(req, res) {
