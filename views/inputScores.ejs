@@ -1,0 +1,42 @@
+<%- include("partials/header") %>
+
+<div class="container">
+    <h1 class="jumbotron">Admin Console</h1>
+
+    <div class="container">
+        <h3>Input scores here:</h3>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Episode</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <% for (let ep = 1; ep <= 10; ep++) { %>
+                                <option><%= ep %></option>
+                        <% }; %>
+                    </select>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Baker</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <% allBakers.forEach(function(baker) { %>
+                                <option><%= baker.name %></option>
+                        <% }); %>
+                    </select>
+              </div>
+            </div>
+        </div>
+        
+        <a type="button" class="btn btn-primary" href="/teams">Back to Teams</a>
+
+    </div>
+    
+
+</div>
+
+
+<%- include("partials/footer") %>
