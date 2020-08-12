@@ -14,26 +14,6 @@ body {
     width: 60%;
 }
 
-.btn {
-    margin: 5px auto;
-}
-
-.navButton {
-    height: 100%;
-    border-radius: 0%;
-    border: none;
-    margin: auto;
-}
-
-#navbar {
-    padding: 0px;
-    width: 100%;
-}
-
-.navbar-brand {
-    padding: 0px 15px;
-}
-
 #roster-col {
     border: 2px solid cyan;
 }
