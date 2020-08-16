@@ -11,7 +11,8 @@ app.set("view engine", "ejs");
 const mongoose = require("mongoose");
 const uri = process.env.MONGODB_URL;
 mongoose.connect(uri, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 let conn = mongoose.connection;
@@ -20,6 +21,7 @@ conn.on('connected', () => {
 });
 
 let TeamSchema = new mongoose.Schema({
+    _id: Number,
     name: String,
     epScores: Array,
     roster: Array
@@ -31,6 +33,7 @@ let BakerSchema = new mongoose.Schema({
     name: String,
     img: String,
     bio: String,
+    epScores: Array
 }, {minimize:false});
 
 let Baker = mongoose.model("Baker", BakerSchema);
@@ -56,6 +59,22 @@ let scoreCategories = [
 
 app.get("/", function(req, res) {
     res.redirect("/teams");
+});
+
+app.get("/teamPage/:teamId", function(req, res) {
+    Team.find({_id: req.params.teamId}, function(err, team){
+        if(err){
+            console.log(err);
+        } else {
+            Baker.find({}, function(err, allBakers){
+                if(err){
+                    console.log(err);
+                } else {
+                    res.render("teamPage", {team: team, allBakers: allBakers});
+                }
+            });
+        }
+    });
 });
 
 app.get("/input-scores", function(req, res) {
@@ -94,7 +113,13 @@ app.get("/rosters", function(req, res) {
         if(err){
             console.log(err);
         } else {
-            res.render("rosters", {teamList: allTeams});
+            Baker.find({}, function(err, allBakers){
+                if(err){
+                    console.log(err);
+                } else {
+                    res.render("rosters", {teamList: allTeams, allBakers: allBakers});
+                }
+            });
         }
     });
 });
