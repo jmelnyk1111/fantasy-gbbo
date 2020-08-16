@@ -1,38 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantasy GBBO</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
-
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        });
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fantasy GBBO</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/css/app.css">
 </head>
 <body>
-    <div class="container fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
-            <a class="navbar-brand" href="/teams">Fantasy GBBO</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a href="/teams"><button class="btn btn-outline-success navButton" type="submit">Scoreboard</button></a>
-                </li>
-                <li class="nav-item">
-                    <a href="/rosters"><button class="btn btn-outline-success navButton" type="submit">Team Rosters</button></a>
-                </li>
-                <li class="nav-item">
-                    <a href="/bakers"><button class="btn btn-outline-success navButton" type="submit">Meet the Bakers</button></a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+    <a class="navbar-brand" href="/teams">Fantasy GBBO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/teams">Scoreboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/rosters">Team Rosters</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/bakers">Meet the Bakers</a>
+        </li>
+      </ul>
     </div>
+  </nav>

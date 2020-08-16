@@ -1,35 +1,34 @@
 <%- include("partials/header") %>
 
+<div class="jumbotron">
+  <h1>Welcome to your Fantasy GBBO League!</h1>
+</div>
+
 <div class="container">
-    <h1 class="jumbotron">Welcome to your Fantasy GBBO League!</h1>
 
-    <div class="container">
-        <h3>Here are the teams</h3>
+  <h3>Here are the teams</h3>
 
-        <div class="row justify-content-center align-items-center">
-            <% teamList.forEach(function(team) { %>
-                <div class="col-2">
-                    <p><%= team.name%></p>
-                    <!-- <p><%= team.slogan%></p> -->
-                </div>
-                <% Object.keys(team.score).forEach(function(ep) { %>
-                    <div class="col-1 text-align-center">
-                        <p><%= team.score[ep]%></p>
-                    </div>
-                <% }); %>
-                <!-- <div class=col-3>
-                    <%= team.score.ep2%>
-                </div>
-                <div class=col-3>
-                    <%= team.score.ep3%>
-                </div> -->
-            <% }); %>
-        </div>
-        
-        <a type="button" class="btn btn-primary" href="/add-team">Add My Team</a>
-
+  <div class="row justify-content-center align-items-center">
+    <% teamList.forEach(function(team) { %>
+    <div class="col-2">
+      <p><%= team.name%></p>
+      <!-- <p><%= team.slogan%></p> -->
     </div>
-    
+    <% Object.keys(team.score).forEach(function(ep) { %>
+    <div class="col-1 text-align-center">
+      <p><%= team.score[ep]%></p>
+    </div>
+    <% }); %>
+    <!-- <div class=col-3>
+      <%= team.score.ep2%>
+    </div>
+    <div class=col-3>
+      <%= team.score.ep3%>
+    </div> -->
+    <% }); %>
+  </div>
+
+  <a type="button" class="btn btn-primary" href="/add-team">Add My Team</a>
 
 </div>
 

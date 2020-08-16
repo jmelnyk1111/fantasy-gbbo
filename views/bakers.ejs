@@ -1,25 +1,23 @@
 <%- include("partials/header") %>
 
+<div class="jumbotron">
+  <h1>Meet the Bakers!</h1>
+</div>
+
 <div class="container">
-    <h1 class="jumbotron">Meet the Bakers!</h1>
+  <h3>Who will take home the big prize?</h3>
 
-    <div class="container">
-        <h3>Who will take home the big prize?</h3>
-
-        <div class="row text-center">
-            <% allBakers.forEach(function(baker) { %>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <img class="img-fluid baker-tooltip" data-toggle="tooltip" data-placement="bottom" title="<%= baker.bio%>" src="<%= baker.img %>"">
-                    <h2 id="baker"><%= baker.name%></h2>
-                    <p id="bio"><%= baker.bio%></p>
-                </div>
-            <% }); %>
-        </div>
-        
-        <a type="button" class="btn btn-primary" href="/teams">Back to Scoreboard</a>
-
+  <div class="row text-center">
+    <% allBakers.forEach(function(baker) { %>
+    <div class="col-12 col-md-6 col-lg-4">
+      <img class="img-fluid baker-tooltip" data-toggle="tooltip" data-placement="bottom" title="<%= baker.bio%>" src="<%= baker.img %>">
+      <h2 id="baker"><%= baker.name%></h2>
+      <p id="bio"><%= baker.bio%></p>
     </div>
-    
+    <% }); %>
+  </div>
+
+  <a type="button" class="btn btn-primary" href="/teams">Back to Scoreboard</a>
 
 </div>
 

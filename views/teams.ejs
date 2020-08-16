@@ -1,42 +1,40 @@
 <%- include("partials/header") %>
 
+<div class="jumbotron">
+  <h1>Welcome to your Fantasy GBBO League!</h1>
+</div>
+
 <div class="container">
-    <h1 class="jumbotron">Welcome to your Fantasy GBBO League!</h1>
 
-    <div class="container">
-        <h3>Here are the scores</h3>
-        
-        <div class="row">
-            <div class="col-2">
-                Episode
-            </div>
-            <% for (let ep = 1; ep <= 10; ep++) { %>
-                <div class="col-2 col-sm-1 text-center justify-content-center">
-                    <%= ep%> 
-                </div>
-            <% }; %>
-        </div>
-        <% teamList.forEach(function(team) { %>
-            <div class="row align-items-center">
-                <div class="col-2">
-                    <%= team.name%> 
-                </div>
-                <% for (let key in team.epScores) { %>
-                    <% let value = team.epScores[key]; %>   
-                    <div id="scoreboard" class="col-2 col-sm-1 text-align-center justify-content-center">
-                        <%- value.score %>
-                    </div>
-                <% }; %>
-            </div>
-        <% }); %>
-        
-        
-        <!-- <a type="button" class="btn btn-primary" href="/add-team">Add my team</a> -->
-        <br><a type="button" class="btn btn-secondary" href="/bakers">Meet the bakers</a>
+  <h3>Here are the scores</h3>
 
-
+  <div class="row">
+    <div class="col-2">
+      Episode
     </div>
-    
+    <% for (let ep = 1; ep <= 10; ep++) { %>
+    <div class="col-2 col-sm-1 text-center justify-content-center">
+      <%= ep%> 
+    </div>
+    <% }; %>
+  </div>
+  <% teamList.forEach(function(team) { %>
+  <div class="row align-items-center">
+    <div class="col-2">
+      <%= team.name%> 
+    </div>
+    <% for (let key in team.epScores) { %>
+    <% let value = team.epScores[key]; %>   
+    <div id="scoreboard" class="col-2 col-sm-1 text-align-center justify-content-center">
+      <%- value.score %>
+    </div>
+    <% }; %>
+  </div>
+  <% }); %>
+
+
+  <!-- <a type="button" class="btn btn-primary" href="/add-team">Add my team</a> -->
+  <br><a type="button" class="btn btn-secondary" href="/bakers">Meet the bakers</a>
 
 </div>
 

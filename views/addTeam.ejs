@@ -1,21 +1,24 @@
 <%- include("partials/header") %>
 
+<div class="jumbotron">
+  <h1>Add your team to the league</h1>
+</div>
+
 <div class="container justify-content-center text-align-center">
-    <h1 class="jumbotron">Add your team to the league</h1>
 
-    <form action="/teams" method="POST" class="justify-content-center" id="teamForm">
-        <div class="form-group">
-          <label for="name">Team Name</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="Enter your team name">
-        </div>
-        <div class="form-group">
-          <label for="slogan">Team Slogan</label>
-          <input type="text" class="form-control" id="slogan" name="slogan" placeholder="Enter a catchy slogan">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+  <form action="/teams" method="POST" class="justify-content-center" id="teamForm">
+    <div class="form-group">
+      <label for="name">Team Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter your team name">
+    </div>
+    <div class="form-group">
+      <label for="slogan">Team Slogan</label>
+      <input type="text" class="form-control" id="slogan" name="slogan" placeholder="Enter a catchy slogan">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
-      <a type="button" class="btn btn-primary" href="/teams">Back to Teams</a>
+  <a type="button" class="btn btn-primary" href="/teams">Back to Teams</a>
 
 </div>
 
