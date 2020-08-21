@@ -7,11 +7,11 @@
 <div class="container">
   <h3>Input scores here:</h3>
   <div class="container d-flex">
-    <form class="w-100">
+    <form class="w-100" action="/input-scores" method="POST" id="scoreForm">
       <div class="form-group row justify-content-center">
         <label for="episode" class="col-form-label col-md-3">Episode</label>
         <div class="col-md-2">
-          <select class="form-control" id="episode">
+          <select class="form-control" id="episode" name="episode">
             <% for (let ep = 1; ep <= 10; ep++) { %>
             <option><%= ep %></option>
             <% }; %>
@@ -21,18 +21,18 @@
       <div class="form-group row justify-content-center">
         <label for="baker" class="col-form-label col-md-3">Baker</label>
         <div class="col-md-2">
-          <select class="form-control" id="baker">
+          <select class="form-control" id="baker" name="baker">
             <% allBakers.forEach(function(baker) { %>
             <option><%= baker.name %></option>
             <% }); %>
           </select>
         </div>
       </div>
-      <% scoreCategories.forEach(function(cat) { %>
+      <% score[0].scores.forEach(function(cat) { %>
       <div class="form-group row justify-content-center">
-        <label for="inputAddress" class="col-form-label col-md-3"><%= cat.name %></label>
+        <label for="<%- cat.category%>" class="col-form-label col-md-3"><%= cat.category %></label>
         <div class="col-md-2">
-          <input type="text" class="form-control" id="inputAddress" placeholder="score">
+          <input type="number" step="any" class="form-control" id="<%- cat.category%>" name="<%- cat.category%>" placeholder="score">
         </div>
       </div>
       <% }); %>
