@@ -21,7 +21,7 @@
   <% teamList.forEach(function(team) { %>
   <div class="row align-items-center">
     <div class="col-2">
-      <%= team.name%> 
+      <a href="/teamPage/<%-team.id%>"><%= team.name%> </a>
     </div>
     <% for (let key in team.epScores) { %>
     <% let value = team.epScores[key]; %>   
@@ -31,10 +31,6 @@
     <% }; %>
   </div>
   <% }); %>
-
-
-  <!-- <a type="button" class="btn btn-primary" href="/add-team">Add my team</a> -->
-  <br><a type="button" class="btn btn-secondary" href="/bakers">Meet the bakers</a>
 
 </div>
 
