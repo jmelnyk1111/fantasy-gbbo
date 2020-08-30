@@ -26,8 +26,13 @@ body {
     margin-bottom: 30px;
 }
 
-#scoreboard {
+.scoreboard {
     border: 1px solid black;
     text-align: center;
     padding: 10px;
+}
+
+#submit {
+  color: rgb(10, 180, 61);
+  text-align: center;
 }

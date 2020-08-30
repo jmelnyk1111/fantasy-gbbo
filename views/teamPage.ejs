@@ -21,9 +21,22 @@
     <% for (let key in team[0].roster) { %>
         <% let baker = team[0].roster[key]; %>   
         <div class="row align-items-center">
-            <div class="col-2">
+            <div class="scoreboard col-2">
                 <%- allBakers.find(x => x.id === baker.bakerId.toHexString()).name; %>
             </div>
+            <% for (let bakerIndex in team[0].roster) { %>
+              <% let bakerId = team[0].roster[bakerIndex].bakerId; %>  
+              <% let epScores = allBakers.find(el => JSON.stringify(el._id) === JSON.stringify(bakerId)).epScores; %>
+              <% let bakerScore = 0; %>
+              <% for (let ep in epScores) { %> 
+                <% for (let category in epScores[ep].scores) { %>
+                  <% bakerScore += epScores[ep].scores[category].score; %>
+                <% }; %> 
+            <% }; %>
+            <div class="scoreboard col-2 col-sm-1 text-center">
+              <%- bakerScore %>
+            </div> 
+            <% }; %>  
         </div>
     <% }; %>
     </div>
