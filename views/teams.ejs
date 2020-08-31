@@ -8,22 +8,31 @@
 
   <h3>Here are the scores</h3>
 
-  <div class="row">
+  <div class="row align-items-center">
     <div class="col-2">
       Episode
     </div>
-    <% for (let ep = 1; ep <= 10; ep++) { %>
-    <div class="col-1 col-sm-1 text-center justify-content-center">
-      <%= ep%> 
+    <div class="col-10">
+      <div class="row">
+        <% for (let ep = 1; ep <= 10; ep++) { %>
+          <div class="col text-center">
+            <%= ep%> 
+          </div>
+        <% }; %>
+        <div class="total col text-center">
+          Total
+        </div>
+      </div>
     </div>
-    <% }; %>
   </div>
   <% allTeams.forEach(function(team) { %>
   <div class="row align-items-center">
-    <div class="col-1">
+    <div class="col-2">
       <a href="/teamPage/<%-team.id%>"><%= team.name%> </a>
     </div>
-    <% let teamScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; %>
+    <div class="col-10">
+      <div class="row">
+      <% let teamScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; %>
     <% let teamTotal = 0; %>
     <% for (let bakerIndex in team.roster) { %>
       <% let bakerId = team.roster[bakerIndex].bakerId; %>  
@@ -39,14 +48,17 @@
       <% }; %>
     <% }; %>  
     <% teamScore.forEach(function(score) { %>
-      <div class="scoreboard col-1 col-sm-1 text-center">
+      <div class="scoreboard col text-center">
         <%- score %>
       </div>
     <% }); %>
-    <div class="scoreboard col-1 col-sm-1 text-center">
+    <div class="scoreboard total col text-center">
       <%- teamTotal %>
     </div>
   </div>
+    </div>
+  </div>
+    
   <% }); %>
 
 </div>

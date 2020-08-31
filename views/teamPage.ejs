@@ -5,9 +5,7 @@
 </div>
 
 <div class="container">
-
     <h3>Here are the scores</h3>
-
     <div class="row">
         <div class="col-2">
         Episode
@@ -18,30 +16,30 @@
             </div>
         <% }; %>
     </div>
-    <% for (let key in team[0].roster) { %>
-        <% let baker = team[0].roster[key]; %>   
-        <div class="row align-items-center">
-            <div class="scoreboard col-2">
-                <%- allBakers.find(x => x.id === baker.bakerId.toHexString()).name; %>
-            </div>
-            <% for (let bakerIndex in team[0].roster) { %>
-              <% let bakerId = team[0].roster[bakerIndex].bakerId; %>  
-              <% let epScores = allBakers.find(el => JSON.stringify(el._id) === JSON.stringify(bakerId)).epScores; %>
-              <% let bakerScore = 0; %>
-              <% for (let ep in epScores) { %> 
-                <% for (let category in epScores[ep].scores) { %>
-                  <% bakerScore += epScores[ep].scores[category].score; %>
-                <% }; %> 
-            <% }; %>
-            <div class="scoreboard col-2 col-sm-1 text-center">
-              <%- bakerScore %>
-            </div> 
-            <% }; %>  
+    <% for (let bakerIndex in team[0].roster) { %>
+      <% let baker = team[0].roster[bakerIndex]; %>   
+      <div class="row align-items-center">
+        <div class="scoreboard col-2">
+            <%- allBakers.find(x => x.id === baker.bakerId.toHexString()).name; %>
         </div>
+        <% let bakerId = team[0].roster[bakerIndex].bakerId; %>  
+        <% let bakerScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; %>
+        <% let epScores = allBakers.find(el => JSON.stringify(el._id) === JSON.stringify(bakerId)).epScores; %>
+        <% for (let i = 0; i < epScores.length; i++) { %>
+          <% let epScore = epScores.find(el => el.episode === i+1) || [{scores:[{score:0}]}]; %>
+          <% for (let cat = 0; cat < epScore.scores.length; cat++) { %>
+            <% bakerScore[i] += epScore.scores[cat].score; %>
+          <% }; %>
+        <% }; %>
+        <% bakerScore.forEach(function(score) { %> 
+          <div class="scoreboard col-2 col-sm-1 text-center">
+            <%- score %>
+          </div> 
+        <% }); %>
+      </div>
     <% }; %>
+    <a class="btn btn-primary" href="/teams">Back to Scoreboard</a>
     </div>
-
 </div>
-
 
 <%- include("partials/footer") %>
