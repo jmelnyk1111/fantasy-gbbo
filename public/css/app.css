@@ -40,3 +40,7 @@ body {
 .total {
   font-weight: 700;
 }
+
+#spreadsheet {
+  margin: 25px auto;
+}
