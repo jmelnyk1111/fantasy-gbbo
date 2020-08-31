@@ -4,9 +4,12 @@
   <h1>Admin Console</h1>
 </div>
 
-<div class="container">
+<div class="container text-center">
   <h3>Input scores here:</h3>
-  <div class="container d-flex">
+  <% if(submit){ %>
+    <h3 id="submit">New Score Submitted!</h3>
+  <% } %>  
+  <div class="container d-flex text-right">
     <form class="w-100" action="/input-scores" method="POST" id="scoreForm">
       <div class="form-group row justify-content-center">
         <label for="episode" class="col-form-label col-md-3">Episode</label>
@@ -32,7 +35,7 @@
       <div class="form-group row justify-content-center">
         <label for="<%- cat.category%>" class="col-form-label col-md-3"><%= cat.category %></label>
         <div class="col-md-2">
-          <input type="number" step="any" class="form-control" id="<%- cat.category%>" name="<%- cat.category%>" placeholder="score">
+          <input type="number" step="any" class="form-control" value=0 id="<%- cat.category%>" name="<%- cat.category%>" placeholder="score">
         </div>
       </div>
       <% }); %>

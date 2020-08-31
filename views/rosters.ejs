@@ -28,17 +28,13 @@
         </div>
         <% for (let key in team.roster) { %>
             <% let baker = team.roster[key]; %>   
-            <div id="scoreboard" class="col-3 text-align-center justify-content-center">
+            <div class="scoreboard col-3 text-align-center justify-content-center">
                 <%- allBakers.find(x => x.id === baker.bakerId.toHexString()).name; %>
             </div>
             <% }; %>
       </div>
       <% }); %>
     </div>
-
-    <a type="button" class="btn btn-primary" href="/teams">Back to Teams</a>
-
 </div>
-
 
 <%- include("partials/footer") %>

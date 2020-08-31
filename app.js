@@ -3,12 +3,14 @@ const app = express();
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
 dotenv.config();
+let tools = require("./tools");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.set("view engine", "ejs");
 
 const mongoose = require("mongoose");
+const { query } = require("express");
 const uri = process.env.MONGODB_URL;
 mongoose.connect(uri, {
     useNewUrlParser: true,
@@ -31,10 +33,16 @@ let TeamSchema = new mongoose.Schema({
 let Team = mongoose.model("Team", TeamSchema);
 
 let BakerSchema = new mongoose.Schema({
-    name: String,
-    img: String,
-    bio: String,
-    epScores: Array
+  name: String,
+  img: String,
+  bio: String,
+  epScores: [{
+    episode: Number,
+    scores: [{
+      category: String,
+      score: Number
+    }]
+  }]
 }, {minimize:false});
 
 let Baker = mongoose.model("Baker", BakerSchema);
@@ -57,11 +65,11 @@ app.get("/", function(req, res) {
 });
 
 app.get("/teamPage/:teamId", function(req, res) {
-    Team.find({_id: req.params.teamId}, function(err, team){
+    Team.find({_id: req.params.teamId}, function(err, team) {
         if(err){
             console.log(err);
         } else {
-            Baker.find({}, function(err, allBakers){
+            Baker.find({}, function(err, allBakers) {
                 if(err){
                     console.log(err);
                 } else {
@@ -73,34 +81,42 @@ app.get("/teamPage/:teamId", function(req, res) {
 });
 
 app.get("/input-scores", function(req, res) {
-    Baker.find({}, function(err, allBakers){
+  let submit = req.query.submit || false;  
+  Baker.find({}, function(err, allBakers) {
+    if(err){
+      console.log(err);
+    } else {
+      EpisodeScore.find({episode:0}, function(err, score) {
+        if(err){
+          console.log(err);
+        } else {
+          res.render("inputScores", {submit: submit, allBakers: allBakers, score: score});
+        }
+      });
+    }
+  });
+});
+
+app.get("/teams", function(req, res) {
+    // Get all teams from DB
+    Team.find({}, function(err, allTeams) {
         if(err){
             console.log(err);
         } else {
-            EpisodeScore.find({episode:0}, function(err, score){
+            Baker.find({}, function(err, allBakers) {
                 if(err){
                     console.log(err);
                 } else {
-                    res.render("inputScores", {allBakers: allBakers, score: score});
+                    
+                    res.render("teams", {allTeams: allTeams, allBakers: allBakers});
                 }
             });
         }
     });
 });
 
-app.get("/teams", function(req, res) {
-    // Get all teams from DB
-    Team.find({}, function(err, allTeams){
-        if(err){
-            console.log(err);
-        } else {
-            res.render("teams", {teamList: allTeams});
-        }
-    });
-});
-
 app.get("/bakers", function(req, res) {
-    Baker.find({}, function(err, allBakers){
+    Baker.find({}, function(err, allBakers) {
         if(err){
             console.log(err);
         } else {
@@ -110,7 +126,7 @@ app.get("/bakers", function(req, res) {
 });
 
 app.get("/rosters", function(req, res) {
-    Team.find({}, function(err, allTeams){
+    Team.find({}, function(err, allTeams) {
         if(err){
             console.log(err);
         } else {
@@ -126,29 +142,32 @@ app.get("/rosters", function(req, res) {
 });
 
 app.post("/input-scores", function(req, res) {
-    EpisodeScore.find({episode: 0}, function(err, epScore){
-        if(err) return res.status(500).send({error:err});
-        let newId = mongoose.Types.ObjectId();
-        let newEpScore = {
-            _id: newId,
-            episode: req.body.episode,
-            bakerName: req.body.baker,
-            scores: []
-        };
-        console.log(epScore);
-        for(let [index, scoreCat] of epScore[0].scores.entries()){
-            let catString = scoreCat.category;
-            newEpScore.scores.push({id: index, category: catString, score: req.body[catString]});
-        };
-        console.log(newEpScore);
-        EpisodeScore.create(newEpScore, function(err, daScore){
-            if(err){
-                console.log(err);
-            } else {
-                res.send(daScore);
-            }
-        });
+  Baker.findOne({"name": req.body.baker}, function(err, baker) {
+    if(err) return res.status(500).send({error:err});
+    let bakerId = baker._id;
+    EpisodeScore.find({episode: 0}, function(err, epScore) {
+      if(err) return res.status(500).send({error:err});
+      let newEpScore = {
+        episode: req.body.episode,
+        scores: []
+      };
+      for(let [index, scoreCat] of epScore[0].scores.entries()) {
+        let catString = scoreCat.category;
+        newEpScore.scores.push({id: index, category: catString, score: req.body[catString]});
+      };
+      Baker.findOneAndUpdate(
+        {_id: bakerId}, 
+        { $addToSet: {epScores: newEpScore}}, 
+        {upsert: true},  
+        function(err, daScore){
+          if(err){
+            console.log(err);
+          } else {
+            res.redirect("/input-scores?submit=true");
+          }
+      });
     });
+  });
 });
 
 app.post("/teams", function(req, res) {
@@ -159,7 +178,7 @@ app.post("/teams", function(req, res) {
         bakers:{}
     };
 
-    Team.create(newTeam, function(err, newlyCreated){
+    Team.create(newTeam, function(err, newlyCreated) {
         if(err){
             console.log(err);
         } else {
